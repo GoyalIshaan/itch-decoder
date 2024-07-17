@@ -7,8 +7,8 @@ using namespace std;
 
 class Market {
     private:
-        void addOrder(Order orderToAdd);
-        void modifyOrder(uint64_t orderIdToModify, Order orderToModify);
+        void addOrder(const Order& orderToAdd);
+        void modifyOrder(uint64_t orderIdToModify, Order newOrder);
         void removeOrder(uint64_t orderIdToRemove);
         unordered_map<uint64_t, Order> GetAllOrders();
         unordered_map<string, OrderBook> GetOrderBook(string symbolOfOrderBook);
