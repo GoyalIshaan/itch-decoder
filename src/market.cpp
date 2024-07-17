@@ -72,7 +72,14 @@ void Market::addOrder(const Order& order) {
 }
 
 void Market::removeOrder(uint64_t orderId) {
-    Order order = orderTable[orderId];
+
+    auto iterator = orderTable.find(orderId);
+    if (iterator == orderTable.end()) {
+        cerr << "Order not found: " << orderId << std::endl;
+        return;
+    }
+
+    Order order = iterator -> second;
     string symbol = order.symbol;
     OrderBook& orderBook = orderBooks[symbol];
 
@@ -119,13 +126,15 @@ void Market::removeOrder(uint64_t orderId) {
 
 void Market::modifyOrder(uint64_t orderId, Order newOrder) {
     removeOrder(orderId);
-    addOrder(newOrder);
+    if (newOrder.id != 0) {
+        addOrder(newOrder);
+    }
 }
 
-unordered_map<uint64_t, Order> Market::GetAllOrders() {
+const unordered_map<uint64_t, Order> Market::GetAllOrders() const {
     return orderTable ;
 }
 
-unordered_map<string, OrderBook> Market::GetOrderBook(string symbolOfOrderBook) {
+const unordered_map<string, OrderBook> Market::GetOrderBook(string symbolOfOrderBook) const {
     return orderBooks;
 }
