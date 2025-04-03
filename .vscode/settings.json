@@ -52,6 +52,12 @@
     "variant": "cpp",
     "vector": "cpp",
     "algorithm": "cpp",
-    "hpp": "c"
+    "hpp": "c",
+    "memory": "cpp",
+    "forward_list": "cpp",
+    "fstream": "cpp",
+    "iomanip": "cpp",
+    "print": "cpp",
+    "stack": "cpp"
   }
 }

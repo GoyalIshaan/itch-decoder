@@ -1,0 +1,9 @@
+*.NASDAQ_ITCH50
+*.csv
+build/
+itch_parser
+itch_parser_profile
+prof.out
+gmon.out
+profile.txt
+*.o

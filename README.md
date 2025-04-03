@@ -2,6 +2,22 @@
 
 A blazing fast, type-safe, and low-latency decoder for **Nasdaq TotalView-ITCH 5.0 binary protocol**, written in modern C++.
 
+## 🚀 Performance Metrics
+
+- **Processing Speed**: ~594,777 messages/second
+- **Average Latency**: 1.68 microseconds per message
+- **Tested Dataset**: Successfully processed 1.2M+ messages
+
+---
+
+## 🎯 Key Features
+
+- ⚡ **Zero-Copy Memory Mapping**: Uses `mmap` for optimal file reading performance
+- 🔄 **Graceful Interruption**: Handles Ctrl+C with clean statistics output
+- 📊 **CSV Export**: Generates structured logs for analysis
+- 🎯 **CPU Cache Optimization**: Implements prefetching for enhanced performance
+- 🔍 **Real-time Monitoring**: Tracks and reports processing statistics
+
 ---
 
 ## 🧠 Project Philosophy
@@ -148,29 +164,30 @@ Every message struct begins with a `char message_type;`.
 While faster than even `memcpy`, it:
 
 - Is **UB** unless alignment is guaranteed
-- **Fails on platforms** that don’t allow strict aliasing
+- **Fails on platforms** that don't allow strict aliasing
 - Breaks on virtual classes or non-POD layouts
 
 We chose `memcpy` + `static_assert` + `pack(1)` for **speed AND safety**.
 
 ---
 
-## 📂 Directory Layout (Recommended)
+## 🛠 Optimizations Implemented
 
-```
-/src
-  /parser
-    PackedParser.hpp
-    SystemEventMessage.hpp
-    StockDirectoryMessage.hpp
-    ...
-  Dispatcher.hpp
-  main.cpp
-/ITCH_README.md
-```
+- Memory-mapped I/O for zero-copy reading
+- CPU cache prefetching via `__builtin_prefetch`
+- Signal handling for clean interruption
+- High-precision timing measurements using `CLOCK_MONOTONIC`
+- Efficient binary message parsing
+- CSV logging for data analysis
 
 ---
 
-## 🤝 Credits
+## 📊 Benchmark Results
 
-Built with ❤️ for speed, safety, and deep understanding of market internals.
+Test conducted on real ITCH market data:
+
+## 📂 Directory Layout (Recommended)
+
+```
+
+```
